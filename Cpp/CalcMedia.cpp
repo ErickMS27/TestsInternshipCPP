@@ -1,48 +1,33 @@
 #include <iostream>
+#include <vector>
 
 int main() {
     while (true) {
-        double nota_1, nota_2, nota_3, nota_4;
+        std::vector<double> notas;
 
-        std::cout << "Digite a sua primeira nota: ";
-        std::cin >> nota_1;
+        double nota;
+        for (int i = 0; i < 4; ++i) {
+            std::cout << "Digite a sua " << i + 1 << "ª nota: ";
+            std::cin >> nota;
 
-        while (nota_1 < 0 || nota_1 > 10) {
-            std::cout << "Nota inválida. Por favor, digite uma nota entre 0 a 10: ";
-            std::cin >> nota_1;
+            while (nota < 0 || nota > 10) {
+                std::cout << "Nota inválida. Por favor, digite uma nota entre 0 a 10: ";
+                std::cin >> nota;
+            }
+
+            notas.push_back(nota);
         }
 
-        std::cout << "\nDigite a sua segunda nota: ";
-        std::cin >> nota_2;
-
-        while (nota_2 < 0 || nota_2 > 10) {
-            std::cout << "Nota inválida. Por favor, digite uma nota entre 0 a 10: ";
-            std::cin >> nota_2;
+        double media = 0.0;
+        for (const double& nota : notas) {
+            media += nota;
         }
-
-        std::cout << "\nDigite a sua terceira nota: ";
-        std::cin >> nota_3;
-
-        while (nota_3 < 0 || nota_3 > 10) {
-            std::cout << "Nota inválida. Por favor, digite uma nota entre 0 a 10: ";
-            std::cin >> nota_3;
-        }
-
-        std::cout << "\nDigite a sua quarta nota: ";
-        std::cin >> nota_4;
-
-        while (nota_4 < 0 || nota_4 > 10) {
-            std::cout << "Nota inválida. Por favor, digite uma quarta entre 0 a 10: ";
-            std::cin >> nota_4;
-        }
-
-        double media = (nota_1 + nota_2 + nota_3 + nota_4) / 4;
+        media /= notas.size();
 
         std::cout << "\nNotas inseridas:\n";
-        std::cout << "Primeira nota: " << nota_1 << "\n";
-        std::cout << "Segunda nota: " << nota_2 << "\n";
-        std::cout << "Terceira nota: " << nota_3 << "\n";
-        std::cout << "Quarta nota: " << nota_4 << "\n";
+        for (size_t i = 0; i < notas.size(); ++i) {
+            std::cout << i + 1 << "º Nota: " << notas[i] << "\n";
+        }
 
         std::cout << "\nMédia das notas = " << media << "\n";
 
@@ -59,7 +44,7 @@ int main() {
         std::cin >> restart;
 
         if (restart != "y" && restart != "Y") {
-            std::cout << "Aplicação encerrada.\n";
+            std::cout << "\nAplicação encerrada.\n";
             break;
         }
     }
