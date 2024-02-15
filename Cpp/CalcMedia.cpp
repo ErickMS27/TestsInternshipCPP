@@ -46,11 +46,19 @@ int main() {
 
         std::cout << "\nMédia das notas = " << media << "\n";
 
-        std::string reiniciar;
-        std::cout << "\nDeseja reiniciar a aplicação? (Y/N): ";
-        std::cin >> reiniciar;
+        if (media >= 7) {
+            std::cout << "\nVocê está aprovado(a)!\n";
+        } else if (media >= 4 && media < 7) {
+            std::cout << "\nVocê está em recuperação.\n";
+        } else {
+            std::cout << "\nVocê está reprovado(a).\n";
+        }
 
-        if (reiniciar != "y" && reiniciar != "Y") {
+        std::string restart;
+        std::cout << "\nDeseja reiniciar a aplicação? Se SIM, clique Y. Caso contrário, clique N:\n";
+        std::cin >> restart;
+
+        if (restart != "y" && restart != "Y") {
             std::cout << "Aplicação encerrada.\n";
             break;
         }
